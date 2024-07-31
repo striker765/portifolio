@@ -4,23 +4,25 @@
 :root {
   --header-height: 3rem;
   --font-semi: 600;
+  
   /*===== Colores =====*/
-  /*Purple 260 - Red 355 - Blue 224 - Pink 340*/
-  /* HSL color mode */
-  --hue-color: 224;
-  --first-color: hsl(var(--hue-color), 89%, 60%);
-  --second-color: hsl(var(--hue-color), 56%, 12%);
+  /* Exemplo de cores em hexadecimal */
+  --first-color: #4b4949; /* Azul claro */
+  --second-color: #cccdd1; /* Azul escuro */
+
   /*===== Fuente y tipografia =====*/
   --body-font: "Poppins", sans-serif;
   --big-font-size: 2rem;
   --h2-font-size: 1.25rem;
   --normal-font-size: .938rem;
   --smaller-font-size: .75rem;
+
   /*===== Margenes =====*/
   --mb-2: 1rem;
   --mb-4: 2rem;
   --mb-5: 2.5rem;
   --mb-6: 3rem;
+
   /*===== z index =====*/
   --z-back: -10;
   --z-fixed: 100;
@@ -79,6 +81,17 @@ img {
   margin-bottom: var(--mb-4);
   text-align: center;
 }
+.section-zuf{
+  position: relative;
+  font-size: var(--h2-font-size);
+  color: var #ffffff;
+  margin-top: var(--mb-2);
+  margin-bottom: var(--mb-4);
+  text-align: center;
+}
+
+
+
 .section-title::after {
   position: absolute;
   content: "";
@@ -104,14 +117,18 @@ img {
   margin-right: var(--mb-2);
 }
 
+
+
+/*===== Barra auta =====*/
+
 .l-header {
-  width: 100%;
   position: fixed;
+  width: 100%;
   top: 0;
   left: 0;
   z-index: var(--z-fixed);
-  background-color: rgb(8, 151, 235);
-  box-shadow: 0 1px 4px rgba(146, 161, 176, 0.15);
+  background-color: #292828;
+  box-shadow: 0 1px 4px rgba(58, 0, 0, 0);
 }
 
 /*===== NAV =====*/
@@ -232,7 +249,7 @@ img {
   transition: 0.3s;
 }
 .button:hover {
-  box-shadow: 0px 10px 36px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 10px 36px rgba(247, 242, 242, 0.15);
 }
 
 /* ===== ABOUT =====*/
@@ -262,70 +279,95 @@ img {
 }
 
 /* ===== SKILLS =====*/
+
+/* Container principal para a seção de habilidades */
 .skills__container {
-  row-gap: 2rem;
-  text-align: center;
-}
-.skills__subtitle {
-  margin-bottom: var(--mb-2);
-}
-.skills__text {
-  margin-bottom: var(--mb-4);
-}
-.skills__data {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-  font-weight: var(--font-semi);
-  padding: 0.5rem 1rem;
-  margin-bottom: var(--mb-4);
-  border-radius: 0.5rem;
-  box-shadow: 0px 4px 25px rgba(3, 136, 212, 0.842);
-}
-.skills__icon {
-  font-size: 2rem;
-  margin-right: var(--mb-2);
-  color: var(--first-color);
-}
-.skills__names {
-  display: flex;
-  align-items: center;
-}
-.skills__bar {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  background-color: var(--first-color);
-  height: 0.25rem;
-  border-radius: 0.5rem;
-  z-index: var(--z-back);
-}
-.skills__html {
-  width: 95%;
-}
-.skills__css {
-  width: 85%;
-}
-.skills__py {
-  width: 65%;
-}
-.skills__ux {
-  width: 85%;
-}
-.skills__django {
-  width: 60%;
-}
-.skills__img {
-  border-radius: 0.5rem;
+  row-gap: 2rem; /* Espaçamento entre linhas de itens */
+  text-align: center; /* Alinha o texto ao centro */
 }
 
+/* Título secundário dentro da seção de habilidades */
+.skills__subtitle {
+  margin-bottom: var(--mb-2); /* Espaçamento abaixo do título */
+}
+
+/* Texto geral na seção de habilidades */
+.skills__text {
+  margin-bottom: var(--mb-4); /* Espaçamento abaixo do texto */
+}
+
+/* Container para dados individuais de habilidades */
+.skills__data {
+  display: flex; /* Usa o layout flexível para alinhar itens */
+  justify-content: space-between; /* Distribui espaço igualmente entre itens */
+  align-items: center; /* Alinha os itens verticalmente ao centro */
+  position: relative; /* Permite o uso de posicionamento absoluto dentro deste elemento */
+  font-weight: var(--font-semi); /* Define o peso da fonte para um estilo semi-negrito */
+  padding: 0.5rem 1rem; /* Adiciona padding interno ao redor do conteúdo */
+  margin-bottom: var(--mb-4); /* Espaçamento abaixo do container de dados */
+  border-radius: 0.5rem; /* Bordas arredondadas */
+  box-shadow: 0px 4px 25px rgba(63, 63, 63, 0.842); /* Adiciona uma sombra ao redor do container */
+}
+
+/* Ícone dentro do container de dados */
+.skills__icon {
+  font-size: 2rem; /* Define o tamanho da fonte (ícone) */
+  margin-right: var(--mb-2); /* Espaçamento à direita do ícone */
+  color: var(--first-color); /* Cor do ícone */
+}
+
+/* Contêiner para os nomes das habilidades */
+.skills__names {
+  display: flex; /* Usa o layout flexível para alinhar itens */
+  align-items: center; /* Alinha os itens verticalmente ao centro */
+}
+
+/* Barra de progresso dentro do container de dados */
+.skills__bar {
+  position: absolute; /* Posiciona a barra de forma absoluta em relação ao container pai */
+  left: 0; /* Alinha a barra ao lado esquerdo do container */
+  bottom: 0; /* Alinha a barra ao fundo do container */
+  background-color: var(--first-color); /* Cor de fundo da barra */
+  height: 0.25rem; /* Altura da barra */
+  border-radius: 0.5rem; /* Bordas arredondadas da barra */
+  z-index: var(--z-back); /* Define a camada (profundidade) da barra em relação a outros elementos */
+}
+
+/* Largura específica da barra de progresso para a habilidade HTML */
+.skills__html {
+  width: 95%; /* Define a largura da barra de progresso */
+}
+
+/* Largura específica da barra de progresso para a habilidade CSS */
+.skills__css {
+  width: 85%; /* Define a largura da barra de progresso */
+}
+
+/* Largura específica da barra de progresso para a habilidade Python */
+.skills__py {
+  width: 65%; /* Define a largura da barra de progresso */
+}
+
+/* Largura específica da barra de progresso para a habilidade UX */
+.skills__ux {
+  width: 85%; /* Define a largura da barra de progresso */
+}
+
+/* Largura específica da barra de progresso para a habilidade Django */
+.skills__django {
+  width: 60%; /* Define a largura da barra de progresso */
+}
+
+/* Imagem dentro da seção de habilidades */
+.skills__img {
+  border-radius: 0.5rem; /* Bordas arredondadas da imagem */
+}
 /* ===== WORK =====*/
 .work__container {
   row-gap: 2rem;
 }
 .work__img {
-  box-shadow: 0px 4px 25px rgb(8, 151, 235);
+  box-shadow: 0px 4px 25px rgb(121, 121, 121);
   border-radius: 0.5rem;
   overflow: hidden;
 }
@@ -483,17 +525,16 @@ img {
 .about__img img {
     width: 400px;
     border: 5px solid transparent; /* Espaço para o contorno */
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); /* Sombra inicial */
     animation: glow 1.5s infinite alternate; /* Animação de brilho */
 }
 
 /* Definindo a animação de brilho */
 @keyframes glow {
     from {
-        box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); /* Cor inicial do brilho */
+        box-shadow: 0 0 10px rgba(153, 153, 153, 0.5); /* Cor inicial do brilho */
     }
     to {
-        box-shadow: 0 0 30px rgba(0, 255, 255, 1); /* Cor final do brilho */
+        box-shadow: 0 0 30px rgb(46, 48, 48); /* Cor final do brilho */
     }
 }
   .skills__container {
@@ -526,13 +567,13 @@ body {
   font-family: var(--body-font);
   font-size: var(--normal-font-size);
   color: #fff; /* Cor do texto alterada para branca para contraste com o fundo preto */
-  background-color: #000; /* Cor de fundo preta para o body */
+  background-color: #292828; /* Cor de fundo preta para o body */
 }
 
 
 /* CSS */
 .home__social-icon {
-  color: rgba(0, 0, 255, 0.74); /* Azul em RGB */
+  color: rgba(247, 247, 247, 0.74); 
   text-decoration: none; /* Opcional: remove sublinhado dos links */ 
 }
 
@@ -554,7 +595,7 @@ body {
 
 ::-webkit-scrollbar-thumb {
   border: 5px solid transparent; /* Espaço para o contorno */
-  background: linear-gradient(45deg, #0a74da, #00c6ff); /* Gradiente */
+  background: linear-gradient(45deg, #000000, #000000); /* Gradiente */
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); /* Sombra inicial */
   animation: glow 1.5s infinite alternate; /* Animação de brilho */
@@ -568,7 +609,7 @@ body {
 /* Para Firefox */
 html {
   scrollbar-width: thin; /* Largura fina */
-  scrollbar-color: #00c6ff rgba(0, 0, 0, 0.74); /* Cores */
+  scrollbar-color: #494949 rgba(0, 0, 0, 0.829); /* Cores */
   animation: glow 1.5s infinite alternate, pulse 2s infinite; /* Animações */
 
 }
