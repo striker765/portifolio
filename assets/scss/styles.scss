@@ -1,0 +1,525 @@
+/*===== GOOGLE FONTS =====*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/*===== VARIÁVEIS CSS =====*/
+:root{
+    --header-height: 3rem; /* Altura do cabeçalho */
+    --font-semi: 600; /* Peso da fonte semi-negrito */
+    
+    /*===== Cores =====*/
+    /* Roxo 260 - Vermelho 355 - Azul 224 - Rosa 340 */
+    /* Modo de cor HSL */
+    --hue-color: 224;
+    --first-color: hsl(var(--hue-color), 89%, 60%);
+    --second-color: hsl(var(--hue-color), 56%, 12%);
+
+    /*===== Fonte e tipografia =====*/
+    --body-font: 'Poppins', sans-serif;
+
+    --big-font-size: 2rem; /* Tamanho da fonte grande */
+    --h2-font-size: 1.25rem; /* Tamanho da fonte para <h2> */
+    --normal-font-size: .938rem; /* Tamanho da fonte normal */
+    --smaller-font-size: .75rem; /* Tamanho da fonte menor */
+
+    /*===== Margens =====*/
+    --mb-2: 1rem; /* Margem abaixo 2 */
+    --mb-4: 2rem; /* Margem abaixo 4 */
+    --mb-5: 2.5rem; /* Margem abaixo 5 */
+    --mb-6: 3rem; /* Margem abaixo 6 */
+
+    /*===== z-index =====*/
+    --z-back: -10; /* z-index para elementos atrás */
+    --z-fixed: 100; /* z-index para elementos fixos */
+
+    @media screen and (min-width: 968px){
+        --big-font-size: 3.5rem; /* Tamanho da fonte grande em telas maiores */
+        --h2-font-size: 2rem; /* Tamanho da fonte para <h2> em telas maiores */
+        --normal-font-size: 1rem; /* Tamanho da fonte normal em telas maiores */
+        --smaller-font-size: .875rem; /* Tamanho da fonte menor em telas maiores */
+    }
+}
+
+/*===== BASE =====*/
+*,::before,::after{
+    box-sizing: border-box; /* Inclui padding e border no cálculo da largura e altura */
+}
+html{
+    scroll-behavior: smooth; /* Rolagem suave para âncoras */
+}
+body{
+    margin: var(--header-height) 0 0 0; /* Margem superior igual à altura do cabeçalho */
+    font-family: var(--body-font); /* Fonte do corpo */
+    font-size: var(--normal-font-size); /* Tamanho da fonte normal */
+    color: var(--second-color); /* Cor do texto */
+}
+h1,h2,p{
+    margin: 0; /* Remove margens de <h1>, <h2> e <p> */
+}
+ul{
+    margin: 0; /* Remove margem das listas */
+    padding: 0; /* Remove padding das listas */
+    list-style: none; /* Remove os marcadores das listas */
+}
+a{
+    text-decoration: none; /* Remove sublinhado dos links */
+}
+img{
+    max-width: 100%; /* Garante que a imagem não ultrapasse a largura do contêiner */
+    height: auto; /* Mantém a proporção da imagem */
+    display: block; /* Remove o espaço abaixo das imagens */
+}
+
+/*===== CLASSES CSS =====*/
+.section-title{
+    position: relative; /* Necessário para posicionar o pseudo-elemento ::after */
+    font-size: var(--h2-font-size); /* Tamanho da fonte do título da seção */
+    color: var(--first-color); /* Cor do texto do título da seção */
+    margin-top: var(--mb-2); /* Margem superior */
+    margin-bottom: var(--mb-4); /* Margem inferior */
+    text-align: center; /* Alinha o texto ao centro */
+
+    &::after{
+        position: absolute; /* Posiciona o pseudo-elemento em relação ao título */
+        content: ''; /* Cria um elemento vazio */
+        width: 64px; /* Largura do pseudo-elemento */
+        height: 0.18rem; /* Altura do pseudo-elemento */
+        left: 0; /* Alinha à esquerda */
+        right: 0; /* Alinha à direita */
+        margin: auto; /* Centraliza horizontalmente */
+        top: 2rem; /* Margem superior do pseudo-elemento */
+        background-color: var(--first-color); /* Cor de fundo do pseudo-elemento */
+    }
+}
+.section{
+    padding-top: 3rem; /* Padding superior */
+    padding-bottom: 2rem; /* Padding inferior */
+}
+
+/*===== LAYOUT =====*/
+.bd-grid{
+    max-width: 1024px; /* Largura máxima da grade */
+    display: grid; /* Usa o layout de grade */
+    margin-left: var(--mb-2); /* Margem esquerda */
+    margin-right: var(--mb-2); /* Margem direita */
+}
+.l-header{
+    width: 100%; /* Largura total */
+    position: fixed; /* Fixa o cabeçalho no topo */
+    top: 0; /* Alinha ao topo */
+    left: 0; /* Alinha à esquerda */
+    z-index: var(--z-fixed); /* Z-index para sobreposição */
+    background-color: #fff; /* Cor de fundo do cabeçalho */
+    box-shadow: 0 1px 4px rgba(146,161,176,.15); /* Sombra do cabeçalho */
+}
+
+/*===== NAV =====*/
+.nav{
+    height: var(--header-height); /* Altura do menu de navegação */
+    display: flex; /* Usa o layout flexível */
+    justify-content: space-between; /* Distribui os itens com espaço entre eles */
+    align-items: center; /* Alinha os itens verticalmente */
+    font-weight: var(--font-semi); /* Peso da fonte semi-negrito */
+
+    &__menu{
+        @media screen and (max-width: 767px){
+            position: fixed; /* Fixa o menu */
+            top: var(--header-height); /* Alinha ao topo, abaixo do cabeçalho */
+            right: -100%; /* Posiciona o menu fora da tela inicialmente */
+            width: 80%; /* Largura do menu */
+            height: 100%; /* Altura total */
+            padding: 2rem; /* Padding interno */
+            background-color: var(--second-color); /* Cor de fundo do menu */
+            transition: .5s; /* Transição para o efeito de abertura */
+        }
+    }
+    &__item{
+        margin-bottom: var(--mb-4); /* Margem inferior dos itens do menu */
+    }
+    &__link{
+        position: relative; /* Necessário para posicionar o pseudo-elemento ::after */
+        color: #fff; /* Cor do texto do link */
+
+        &:hover{
+            position: relative; /* Necessário para posicionar o pseudo-elemento ::after */
+            
+            &::after{
+                position: absolute; /* Posiciona o pseudo-elemento em relação ao link */
+                content: ''; /* Cria um elemento vazio */
+                width: 100%; /* Largura total */
+                height: 0.18rem; /* Altura do pseudo-elemento */
+                left: 0; /* Alinha à esquerda */
+                top: 2rem; /* Margem superior do pseudo-elemento */
+                background-color: var(--first-color); /* Cor de fundo do pseudo-elemento */
+            }
+        }
+    }
+    &__logo{
+        color: var(--second-color); /* Cor do logo */
+    }
+    &__toggle{
+        color: var(--second-color); /* Cor do ícone de alternância */
+        font-size: 1.5rem; /* Tamanho da fonte do ícone */
+        cursor: pointer; /* Cursor de mão para indicar interatividade */
+    }
+}
+/*Link ativo*/
+.active-link::after{
+    position: absolute; /* Posiciona o pseudo-elemento em relação ao link ativo */
+    content: ''; /* Cria um elemento vazio */
+    width: 100%; /* Largura total */
+    height: 0.18rem; /* Altura do pseudo-elemento */
+    left: 0; /* Alinha à esquerda */
+    top: 2rem; /* Margem superior do pseudo-elemento */
+    background-color: var(--first-color); /* Cor de fundo do pseudo-elemento */
+}
+
+/*=== Mostrar menu ===*/
+.show{
+    right: 0; /* Move o menu para a posição visível */
+}
+
+/*===== HOME =====*/
+.home{
+    position: relative; /* Necessário para posicionar os elementos internos */
+    row-gap: 5rem; /* Espaço entre linhas */
+    padding: 4rem 0 5rem; /* Padding interno */
+
+    &__data{
+        align-self: center; /* Alinha o conteúdo ao centro */
+    }
+    &__title{
+        font-size: var(--big-font-size); /* Tamanho da fonte do título */
+        margin-bottom: var(--mb-5); /* Margem inferior do título */
+
+        &-color{
+            color: var(--first-color); /* Cor do título */
+        }
+    }
+    &__social{
+        display: flex; /* Usa o layout flexível */
+        flex-direction: column; /* Alinha os ícones na vertical */
+        &-icon{
+            width: max-content; /* Largura mínima necessária */
+            margin-bottom: var(--mb-2); /* Margem inferior dos ícones */
+            font-size: 1.5rem; /* Tamanho da fonte dos ícones */
+            color: var(--second-color); /* Cor dos ícones */
+
+            &:hover{
+                color: var(--first-color); /* Muda a cor dos ícones ao passar o mouse */
+            }
+        }
+    }
+
+    &__img{
+        position: absolute; /* Posiciona a imagem de forma absoluta */
+        right: 0; /* Alinha à direita */
+        bottom: 0; /* Alinha ao fundo */
+        width: 260px; /* Largura da imagem */
+    }
+    &__blob{
+        fill: var(--first-color); /* Preenche o blob com a cor principal */
+
+        &-img{
+            width: 360px; /* Largura da imagem do blob */
+        }
+    }
+}
+
+/*BOTÕES*/
+.button{
+    display: inline-block; /* Exibe como um bloco inline */
+    background-color: var(--first-color); /* Cor de fundo do botão */
+    color: #fff; /* Cor do texto do botão */
+    padding: .75rem 2.5rem; /* Padding interno */
+    font-weight: var(--font-semi); /* Peso da fonte semi-negrito */
+    border-radius: .5rem; /* Bordas arredondadas */
+    transition: .3s; /* Transição suave para efeitos de hover */
+
+    &:hover{
+        box-shadow: 0px 10px 36px rgba(0,0,0,.15); /* Sombra do botão ao passar o mouse */
+    }
+}
+
+/* ===== SOBRE =====*/
+.about{
+    &__container{
+        row-gap: 2rem; /* Espaço entre linhas */
+        text-align: center; /* Alinha o texto ao centro */
+    }
+    &__subtitle{
+        margin-bottom: var(--mb-2); /* Margem inferior do subtítulo */
+    }
+
+    &__img{
+        justify-self: center; /* Alinha a imagem ao centro */
+
+        & img{
+            width: 200px; /* Largura da imagem */
+            border-radius: .5rem; /* Bordas arredondadas */
+        }
+    }
+}
+
+/* ===== HABILIDADES =====*/
+.skills{
+    &__container{
+        row-gap: 2rem; /* Espaço entre linhas */
+        text-align: center; /* Alinha o texto ao centro */
+    }
+    &__subtitle{
+        margin-bottom: var(--mb-2); /* Margem inferior do subtítulo */
+    }
+    &__text{
+        margin-bottom: var(--mb-4); /* Margem inferior do texto */
+    }
+    &__data{
+        display: flex; /* Usa o layout flexível */
+        justify-content: space-between; /* Distribui os itens com espaço entre eles */
+        align-items: center; /* Alinha os itens verticalmente */
+        position: relative; /* Necessário para posicionar o pseudo-elemento */
+        font-weight: var(--font-semi); /* Peso da fonte semi-negrito */
+        padding: .5rem 1rem; /* Padding interno */
+        margin-bottom: var(--mb-4); /* Margem inferior dos dados */
+        border-radius: .5rem; /* Bordas arredondadas */
+        box-shadow: 0px 4px 25px rgba(14, 36, 49, 0.15); /* Sombra dos dados */
+    }
+    &__icon{
+        font-size: 2rem; /* Tamanho da fonte do ícone */
+        margin-right: var(--mb-2); /* Margem direita do ícone */
+        color: var(--first-color); /* Cor do ícone */
+    }
+    &__names{
+        display: flex; /* Usa o layout flexível */
+        align-items: center; /* Alinha os itens verticalmente */
+    }
+    &__bar{
+        position: absolute; /* Posiciona a barra de progresso de forma absoluta */
+        left: 0; /* Alinha à esquerda */
+        bottom: 0; /* Alinha ao fundo */
+        background-color: var(--first-color); /* Cor de fundo da barra */
+        height: .25rem; /* Altura da barra */
+        border-radius: .5rem; /* Bordas arredondadas da barra */
+        z-index: var(--z-back); /* Z-index para colocar a barra atrás */
+    }
+    &__html{
+        width: 95%; /* Largura da barra para HTML */
+    }
+    &__css{
+        width: 85%; /* Largura da barra para CSS */
+    }
+    &__py{
+        width: 65%; /* Largura da barra para python */
+    }
+    &__ux{
+        width: 85%; /* Largura da barra para UX */
+    }
+    &__img{
+        border-radius: .5rem; /* Bordas arredondadas da imagem */
+    }
+}
+/* ===== TRABALHO =====*/
+.work{
+    &__container{
+        row-gap: 2rem; /* Espaço entre linhas */
+    }
+    &__img{
+        box-shadow: 0px 4px 25px rgba(49, 44, 14, 0.801); /* Sombra da imagem */
+        border-radius: .5rem; /* Bordas arredondadas */
+        overflow: hidden; /* Oculta o excesso da imagem */
+        
+        & img{
+            transition: 1s; /* Transição suave para efeitos de hover */
+
+            &:hover{
+                transform: scale(1.1); /* Aumenta a escala da imagem ao passar o mouse */
+            }
+        }
+    }
+}
+
+/* ===== CONTATO =====*/
+.contact{
+    &__input{
+        width: 100%; /* Largura total do campo de entrada */
+        font-size: var(--normal-font-size); /* Tamanho da fonte */
+        font-weight: var(--font-semi); /* Peso da fonte semi-negrito */
+        padding: 1rem; /* Padding interno */
+        border-radius: .5rem; /* Bordas arredondadas */
+        border: 1.5px solid var(--second-color); /* Borda do campo de entrada */
+        outline: none; /* Remove o contorno padrão */
+        margin-bottom: var(--mb-4); /* Margem inferior do campo de entrada */
+    }
+    &__button{
+        display: block; /* Exibe o botão como um bloco */
+        border: none; /* Remove a borda padrão */
+        outline: none; /* Remove o contorno padrão */
+        font-size: var(--normal-font-size); /* Tamanho da fonte */
+        cursor: pointer; /* Cursor de mão para indicar interatividade */
+        margin-left: auto; /* Alinha o botão à direita */
+    }
+}
+
+/* ===== RODAPÉ =====*/
+.footer{
+    background-color: var(--second-color); /* Cor de fundo do rodapé */
+    color: #fff; /* Cor do texto */
+    text-align: center; /* Alinha o texto ao centro */
+    font-weight: var(--font-semi); /* Peso da fonte semi-negrito */
+    padding: 2rem 0; /* Padding interno */
+
+    &__title{
+        font-size: 2rem; /* Tamanho da fonte do título do rodapé */
+        margin-bottom: var(--mb-4); /* Margem inferior do título */
+    }
+    &__social{
+        margin-bottom: var(--mb-4); /* Margem inferior das redes sociais */
+    }
+    &__icon{
+        font-size: 1.5rem; /* Tamanho da fonte do ícone */
+        color: #fff; /* Cor dos ícones */
+        margin: 0 var(--mb-2); /* Margem horizontal dos ícones */
+    }
+    &__copy{
+        font-size: var(--smaller-font-size); /* Tamanho da fonte para o texto de direitos autorais */
+    }
+}
+
+/* ===== CONSULTAS DE MÍDIA =====*/
+@media screen and (max-width: 320px){
+    .home{
+        row-gap: 2rem; /* Espaço entre linhas reduzido */
+
+        &__img{
+            width: 200px; /* Largura reduzida da imagem */
+        }
+    }
+}
+
+@media screen and (min-width: 576px){
+    .home{
+        padding: 4rem 0 2rem; /* Padding ajustado */
+        &__social{
+            padding-top: 0; /* Remove padding superior */
+            padding-bottom: 2.5rem; /* Ajusta padding inferior */
+            flex-direction: row; /* Alinha os ícones na horizontal */
+            align-self: flex-end; /* Alinha os ícones ao final */
+
+            &-icon{
+                margin-bottom: 0; /* Remove margem inferior dos ícones */
+                margin-right: var(--mb-4); /* Margem direita dos ícones */
+            }
+        }
+        &__img{
+            width: 300px; /* Largura ajustada da imagem */
+            bottom: 25%; /* Ajusta a posição da imagem */
+        }
+    }
+
+    .about__container{
+        grid-template-columns: repeat(2,1fr); /* Layout de duas colunas */
+        align-items: center; /* Alinha os itens verticalmente */
+        text-align: initial; /* Alinha o texto ao início */
+    }
+
+    .skills__container{
+        grid-template-columns: .7fr; /* Layout de uma coluna */
+        justify-content: center; /* Centraliza o conteúdo */
+        column-gap: 1rem; /* Espaço entre colunas */
+    }
+
+    .work__container{
+        grid-template-columns: repeat(2,1fr); /* Layout de duas colunas */
+        column-gap: 2rem; /* Espaço entre colunas */
+        padding-top: 2rem; /* Padding superior ajustado */
+    }
+
+    .contact{
+        &__form{
+            width: 360px; /* Largura do formulário */
+            padding-top: 2rem ; /* Padding superior do formulário */
+        }
+        &__container{
+            justify-items: center; /* Centraliza os itens */
+        }
+    }
+}
+
+@media screen and (min-width: 768px){
+    body{
+        margin: 0; /* Remove a margem superior */
+    }
+    .section{
+        padding-top: 4rem; /* Padding superior ajustado */
+        padding-bottom: 3rem; /* Padding inferior ajustado */
+    }
+
+    .section-title{
+        margin-bottom: var(--mb-6); /* Margem inferior do título da seção */
+
+        &::after{
+            width: 80px; /* Largura ajustada da linha após o título */
+            top: 3rem; /* Ajusta a posição superior da linha */
+        }
+    }
+
+    .nav{
+        height: calc(var(--header-height) + 1.5rem); /* Ajusta a altura da navegação */
+        &__list{
+            display: flex; /* Usa o layout flexível */
+            padding-top: 0; /* Remove padding superior */
+        }
+        &__item{
+            margin-left: var(--mb-6); /* Margem esquerda dos itens de navegação */
+            margin-bottom: 0; /* Remove margem inferior */
+        }
+        &__toggle{
+            display: none; /* Oculta o botão de alternância em telas maiores */
+        }
+        &__link{
+            color: var(--second-color); /* Cor dos links de navegação */
+        }
+    }
+    .home{
+        padding: 8rem 0 2rem; /* Padding ajustado */
+        
+        &__img{
+            width: 400px; /* Largura ajustada da imagem */
+            bottom: 10%; /* Ajusta a posição da imagem */
+        }
+    }
+
+    .about{
+        &__container{
+           padding-top: 2rem; /* Padding superior ajustado */
+        }
+        &__img{
+            & img{
+                width: 300px; /* Largura ajustada da imagem */
+            }
+        }
+    }
+    .skills__container{
+        grid-template-columns: repeat(2,1fr); /* Layout de duas colunas */
+        column-gap: 2rem; /* Espaço entre colunas */
+        align-items: center; /* Alinha os itens verticalmente */
+        text-align: initial; /* Alinha o texto ao início */
+    }
+    .work__container{
+        grid-template-columns: repeat(3,1fr); /* Layout de três colunas */
+        column-gap: 2rem; /* Espaço entre colunas */
+    }
+}
+
+@media screen and (min-width: 992px){
+    .bd-grid{
+        margin-left: auto; /* Centraliza o grid horizontalmente */
+        margin-right: auto; /* Centraliza o grid horizontalmente */
+    }
+    .home{
+        padding: 10rem 0 2rem; /* Padding ajustado */
+        
+        &__img{
+            width: 450px; /* Largura ajustada da imagem */
+        }
+    }
+}
