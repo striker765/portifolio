@@ -238,10 +238,20 @@ img {
 /* ===== ABOUT =====*/
 .about__container {
   row-gap: 2rem;
-  text-align: center;
+  text-align: justify;
+  font-size: 18px;
+  line-height: 1.6;
+  font-family: 'Open Sans', sans-serif;
 }
 .about__subtitle {
   margin-bottom: var(--mb-2);
+  row-gap: 2rem;
+  text-align: center;
+  font-size: 19px;
+  line-height: 1.6;
+  font-family: 'Open Sans', sans-serif;
+
+  
 }
 .about__img {
   justify-self: center;
@@ -302,6 +312,9 @@ img {
 }
 .skills__ux {
   width: 85%;
+}
+.skills__django {
+  width: 60%;
 }
 .skills__img {
   border-radius: 0.5rem;
@@ -459,9 +472,30 @@ img {
   .about__container {
     padding-top: 2rem;
   }
-  .about__img img {
-    width: 300px;
-  }
+  .about__img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    position: relative; /* Necessário para a animação do contorno */
+}
+
+.about__img img {
+    width: 400px;
+    border: 5px solid transparent; /* Espaço para o contorno */
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); /* Sombra inicial */
+    animation: glow 1.5s infinite alternate; /* Animação de brilho */
+}
+
+/* Definindo a animação de brilho */
+@keyframes glow {
+    from {
+        box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); /* Cor inicial do brilho */
+    }
+    to {
+        box-shadow: 0 0 30px rgba(0, 255, 255, 1); /* Cor final do brilho */
+    }
+}
   .skills__container {
     grid-template-columns: repeat(2, 1fr);
     column-gap: 2rem;
@@ -498,6 +532,50 @@ body {
 
 /* CSS */
 .home__social-icon {
-  color: rgb(0, 0, 255); /* Azul em RGB */
-  text-decoration: none; /* Opcional: remove sublinhado dos links */
+  color: rgba(0, 0, 255, 0.74); /* Azul em RGB */
+  text-decoration: none; /* Opcional: remove sublinhado dos links */ 
+}
+
+
+
+
+
+/* Barra de rolagem */
+
+/* Para Webkit (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 12px; /* Largura */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Trilho */
+  border-radius: 10px; /* Bordas */
+}
+
+::-webkit-scrollbar-thumb {
+  border: 5px solid transparent; /* Espaço para o contorno */
+  background: linear-gradient(45deg, #0a74da, #00c6ff); /* Gradiente */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); /* Sombra inicial */
+  animation: glow 1.5s infinite alternate; /* Animação de brilho */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #00c6ff, #0a74da); /* Gradiente ao passar o mouse */
+  box-shadow: 0 0 20px rgba(0, 255, 255, 1); /* Aumenta a sombra */
+}
+
+/* Para Firefox */
+html {
+  scrollbar-width: thin; /* Largura fina */
+  scrollbar-color: #00c6ff rgba(0, 0, 0, 0.74); /* Cores */
+  animation: glow 1.5s infinite alternate, pulse 2s infinite; /* Animações */
+
+}
+
+/* Para navegadores antigos */
+body {
+  overflow: auto; /* Permite rolagem */
+  animation: glow 1.5s infinite alternate, pulse 2s infinite; /* Animações */
+
 }
