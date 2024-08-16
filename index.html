@@ -42,7 +42,7 @@
                 <a href="#" class="button">Contact</a>
             </div>
             <div class="home__social">
-                <a href="" class="home__social-icon"><i class='bx bxl-linkedin'></i></a>
+                <a href="https://www.linkedin.com/in/thiago-giovanni-bosco-bosco-7a61121b2/" class="home__social-icon"><i class='bx bxl-linkedin'></i></a>
                 <a href="https://github.com/striker765?tab=repositories" class="home__social-icon"><i class='bx bxl-github'></i></a>
                 <a href="" class="home__social-icon"><i class='bx bxl-gitlab'></i></a>
             </div>
@@ -170,13 +170,13 @@
 
         <!--===== CONTACT =====-->
         <section class="contact section" id="contact">
-            <h2 class="section-title">Contact</h2>
+            <h2 class="section-title">Contato</h2>
             <div class="contact__container bd-grid">
-                <form action="" class="contact__form">
-                    <input type="text" placeholder="Name" class="contact__input" required>
-                    <input type="email" placeholder="Email" class="contact__input" required>
-                    <textarea name="message" cols="0" rows="10" placeholder="Message" class="contact__input" required></textarea>
-                    <input type="submit" value="Send" class="contact__button button">
+                <form action="/enviar-email" method="POST" class="contact__form">
+                    <input type="text" name="nome" placeholder="Nome" class="contact__input" required>
+                    <input type="email" name="email" placeholder="Email" class="contact__input" required>
+                    <textarea name="mensagem" cols="0" rows="10" placeholder="Mensagem" class="contact__input" required></textarea>
+                    <input type="submit" value="Enviar" class="contact__button button">
                 </form>
             </div>
         </section>
