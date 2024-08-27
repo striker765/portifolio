@@ -748,7 +748,46 @@ body {
   }
 }
 
+#terminal {
+  background: #000;
+  color: #0f0;
+  padding: 20px;
+  border-radius: 8px;
+  font-family: 'Courier New', Courier, monospace;
+  white-space: pre-wrap; /* Mantém espaços e quebras de linha */
+  overflow-y: auto; /* Permite rolagem vertical se o conteúdo exceder a altura */
+  height: 400px; /* Define a altura fixa do terminal */
+  width: 100%; /* Ajusta a largura conforme necessário */
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Adiciona sombra para um efeito mais realista */
+  position: relative; /* Necessário para o ajuste de rolagem automática */
+  line-height: 1.4; /* Melhora a legibilidade */
+  border: 1px solid rgba(0, 255, 0, 0.412); /* Adiciona uma borda verde clara */
+  font-size: 16px; /* Ajusta o tamanho da fonte */
+  background-color: #000; /* Confirma o fundo preto */
+  padding: 10px 20px; /* Ajusta o padding para melhor alinhamento */
+}
 
+.line {
+  white-space: pre-wrap;
+  position: relative;
+  display: inline-block; /* Mantém o efeito de digitação em linha */
+  margin-bottom: 1px; /* Espaçamento entre as linhas */
+  }
+  
 
+/* Animação de cursor do terminal */
+@keyframes blink {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
 
-
+/* Estilo do cursor no terminal */
+#terminal::after {
+  content: '|'; /* Representa o cursor */
+  position: absolute;
+  right: 20px; 
+  bottom: 20px; 
+  color: #0f0;
+  animation: blink 1s step-start infinite;
+}
