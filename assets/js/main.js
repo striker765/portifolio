@@ -40,18 +40,90 @@ const scrollActive = () =>{
         }                                                    
     })
 }
-window.addEventListener('scroll', scrollActive)
 
-/*===== SCROLL REVEAL ANIMATION =====*/
-const sr = ScrollReveal({
-    origin: 'top',
-    distance: '60px',
-    duration: 2000,
-    delay: 200,
-//     reset: true
-});
 
-sr.reveal('.home__data, .about__img, .skills__subtitle, .skills__text',{}); 
-sr.reveal('.home__img, .about__subtitle, .about__text, .skills__img',{delay: 400}); 
-sr.reveal('.home__social-icon',{ interval: 200}); 
-sr.reveal('.skills__data, .work__img, .contact__input',{interval: 200}); 
+
+
+
+(function() {
+    "use strict";
+
+    var carousel = document.getElementsByClassName('carousel')[0],
+        slider = carousel.getElementsByClassName('carousel__slider')[0],
+        items = carousel.getElementsByClassName('carousel__slider__item'),
+        prevBtn = carousel.getElementsByClassName('carousel__prev')[0],
+        nextBtn = carousel.getElementsByClassName('carousel__next')[0];
+    
+    var width, height, totalWidth, margin = 20,
+        currIndex = 0,
+        interval, intervalTime = 4000;
+    
+    function init() {
+      resize();
+      move(currIndex);
+      bindEvents();
+      timer();
+    }
+    
+    function resize() {
+      width = Math.max(window.innerWidth * 0.25, 275);
+      height = window.innerHeight * 0.5;
+      totalWidth = width * items.length;
+      
+      slider.style.width = totalWidth + "px";
+      
+      for (var i = 0; i < items.length; i++) {
+        let item = items[i];
+        item.style.width = (width - (margin * 2)) + "px";
+        item.style.height = height + "px";
+      }
+      
+      move(currIndex); // Ajusta a posição após o redimensionamento
+    }
+    
+    function move(index) {
+      if (index < 0) index = items.length - 1;
+      if (index >= items.length) index = 0;
+      currIndex = index;
+      
+      for (var i = 0; i < items.length; i++) {
+        let item = items[i],
+            box = item.getElementsByClassName('item__3d-frame')[0];
+        if (i === currIndex) {
+          item.classList.add('carousel__slider__item--active');
+          box.style.transform = "perspective(1200px)"; 
+        } else {
+          item.classList.remove('carousel__slider__item--active');
+          let rotateY = (i < currIndex) ? 40 : -40;
+          box.style.transform = `perspective(1200px) rotateY(${rotateY}deg)`;
+        }
+      }
+      
+      slider.style.transform = `translate3d(${-(currIndex * (width - margin * 2)) + window.innerWidth / 2 - width / 2}px, 0, 0)`;
+    }
+    
+    function timer() {
+      clearInterval(interval);
+      interval = setInterval(() => {
+        move(currIndex + 1);
+      }, intervalTime);
+    }
+    
+    function prev() {
+      move(currIndex - 1);
+      timer();
+    }
+    
+    function next() {
+      move(currIndex + 1);
+      timer();
+    }
+    
+    function bindEvents() {
+      window.addEventListener('resize', resize);
+      prevBtn.addEventListener('click', prev);
+      nextBtn.addEventListener('click', next);
+    }
+
+    init();
+})();

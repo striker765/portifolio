@@ -620,3 +620,135 @@ body {
   animation: glow 1.5s infinite alternate, pulse 2s infinite; /* Animações */
 
 }
+/* ===== CARROSSEL ===== */
+.carousel {
+  position: relative; /* Posiciona o carrossel de forma relativa para permitir a colocação dos controles */
+  display: block; /* Exibe o carrossel como um bloco */
+  width: 100%; /* Faz o carrossel ocupar toda a largura do contêiner pai */
+  overflow: hidden; /* Oculta qualquer conteúdo que ultrapasse os limites do carrossel */
+  box-sizing: border-box; /* Inclui padding e border no cálculo da largura e altura */
+}
+
+/* Controles do carrossel */
+.carousel__prev, .carousel__next {
+  position: absolute; /* Posiciona os controles de forma absoluta em relação ao carrossel */
+  top: 50%; /* Posiciona os controles verticalmente no meio do carrossel */
+  transform: translateY(-50%); /* Ajusta a posição vertical para centralizar os controles */
+  background-color: rgba(0, 0, 0, 0.5); /* Define a cor de fundo com opacidade */
+  border-radius: 50%; /* Torna os controles circulares */
+  padding: 0.5rem; /* Adiciona espaço interno ao redor do texto */
+  color: #fff; /* Define a cor do texto */
+  font-size: 2rem; /* Define o tamanho da fonte dos ícones */
+  cursor: pointer; /* Muda o cursor para indicar que é clicável */
+  z-index: 10; /* Garante que os controles estejam acima de outros elementos */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Adiciona transição suave para cor e transformação */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4); /* Adiciona uma sombra ao redor dos controles */
+}
+
+.carousel__prev:hover, .carousel__next:hover {
+  background-color: rgba(0, 0, 0, 0.8); /* Escurece a cor de fundo ao passar o mouse */
+  transform: translateY(-50%) scale(1.1); /* Aumenta o tamanho dos controles ao passar o mouse */
+}
+
+.carousel__prev {
+  left: 10px; /* Posiciona o botão "anterior" à esquerda */
+}
+
+.carousel__next {
+  right: 10px; /* Posiciona o botão "próximo" à direita */
+}
+
+/* Corpo do carrossel */
+.carousel__body {
+  position: relative; /* Posiciona o corpo do carrossel de forma relativa para os indicadores */
+  width: 100%; /* Faz o corpo do carrossel ocupar toda a largura do contêiner pai */
+  padding: 10px 0; /* Adiciona padding vertical */
+  overflow: hidden; /* Oculta qualquer conteúdo que ultrapasse os limites do corpo do carrossel */
+}
+
+.carousel__slider {
+  display: flex; /* Usa flexbox para exibir os itens em linha */
+  transition: transform 0.5s ease; /* Adiciona uma transição suave para o movimento dos itens */
+  animation: slideAnimation 0.5s ease; /* Aplica uma animação de deslizamento */
+}
+
+.carousel__item {
+  min-width: 90%; /* Define a largura mínima dos itens para 90% da largura do carrossel */
+  box-sizing: border-box; /* Inclui padding e border no cálculo da largura */
+  padding: 0 10px; /* Adiciona padding horizontal aos itens */
+  margin: 0 auto; /* Centraliza os itens dentro do carrossel */
+}
+
+.carousel__item img {
+  width: 100%; /* Faz a imagem ocupar toda a largura do item */
+  border-radius: 15px; /* Arredonda as bordas das imagens */
+  transition: transform 0.5s ease, box-shadow 0.3s ease; /* Adiciona transições suaves para transformação e sombra */
+  border: 2px solid rgba(255, 255, 255, 0.3); /* Adiciona um contorno sutil às imagens */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Adiciona uma sombra ao redor das imagens */
+}
+
+.carousel__item img:hover {
+  transform: scale(1.05); /* Aumenta o tamanho da imagem ao passar o mouse */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4); /* Intensifica a sombra ao passar o mouse */
+}
+
+/* Indicadores do carrossel */
+.carousel__indicators {
+  position: absolute; /* Posiciona os indicadores de forma absoluta em relação ao carrossel */
+  bottom: 10px; /* Posiciona os indicadores no fundo do carrossel */
+  left: 50%; /* Centraliza os indicadores horizontalmente */
+  transform: translateX(-50%); /* Ajusta a posição horizontal para centralizar os indicadores */
+  display: flex; /* Usa flexbox para exibir os indicadores em linha */
+  gap: 5px; /* Adiciona espaço entre os indicadores */
+}
+
+.carousel__indicator {
+  width: 10px; /* Define a largura dos indicadores */
+  height: 10px; /* Define a altura dos indicadores */
+  background-color: rgba(255, 255, 255, 0.5); /* Define a cor de fundo dos indicadores */
+  border-radius: 50%; /* Torna os indicadores circulares */
+  cursor: pointer; /* Muda o cursor para indicar que é clicável */
+  transition: background-color 0.3s ease; /* Adiciona uma transição suave para a cor de fundo */
+}
+
+.carousel__indicator.active, .carousel__indicator:hover {
+  background-color: #fff; /* Define a cor de fundo dos indicadores ativos ou ao passar o mouse */
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.8); /* Adiciona uma sombra ao redor dos indicadores ativos ou ao passar o mouse */
+}
+
+/* Responsividade */
+@media screen and (max-width: 767px) {
+  .carousel__prev, .carousel__next {
+    font-size: 1.5rem; /* Reduz o tamanho da fonte dos controles em telas menores */
+    padding: 0.3rem; /* Reduz o padding dos controles em telas menores */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .carousel__prev, .carousel__next {
+    font-size: 1.2rem; /* Reduz ainda mais o tamanho da fonte dos controles em telas muito pequenas */
+    padding: 0.2rem; /* Reduz ainda mais o padding dos controles em telas muito pequenas */
+  }
+
+  .carousel__indicator {
+    width: 8px; /* Reduz o tamanho dos indicadores em telas muito pequenas */
+    height: 8px; /* Reduz o tamanho dos indicadores em telas muito pequenas */
+  }
+}
+
+/* Animação */
+@keyframes slideAnimation {
+  0% {
+    transform: translateX(100%); /* Inicia a animação fora da tela à direita */
+    opacity: 0; /* Define a opacidade inicial como 0 */
+  }
+  100% {
+    transform: translateX(0); /* Move o item para sua posição final */
+    opacity: 1; /* Define a opacidade final como 1 */
+  }
+}
+
+
+
+
+
